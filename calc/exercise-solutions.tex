@@ -1,0 +1,83 @@
+\documentclass[11pt]{ctexart}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{commath}
+\usepackage{physics}
+\usepackage{etoolbox}
+\usepackage[margin=0.8in,a4paper]{geometry}
+
+\title{预习微积分部分练习答案}
+\author{TechX 人工智能与机器学习课程筹备组}
+\date{}
+
+\let\grad\relax
+\DeclareMathOperator{\grad}{\mathrm{grad}}
+
+% Centering in indented environments
+\newcommand{\nomathindent}{\displayindent0pt \displaywidth\textwidth}
+\makeatletter
+\patchcmd\start@gather{$$}{%
+  $$%
+  \displaywidth=\textwidth
+  \displayindent=-\leftskip
+}{}{\errmessage{Cannot patch \string\start@gather}}
+\patchcmd\start@align{$$}{%
+  $$%
+  \displaywidth=\textwidth
+  \displayindent=-\leftskip
+}{}{\errmessage{Cannot patch \string\start@align}}
+\patchcmd\start@multline{$$}{%
+  $$%
+  \displaywidth=\textwidth
+  \displayindent=-\leftskip
+}{}{\errmessage{Cannot patch \string\start@multline}}
+\patchcmd\mathdisplay{$$}{%
+  $$%
+  \displaywidth=\textwidth
+  \displayindent=-\leftskip
+}{}{\errmessage{Cannot patch \string\mathdisplay}}
+\makeatother
+
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+  \item 令函数 $f$ 定义为 $f(x) = e^{2x} + \sin(x^2)$。求 $f$ 的二阶导数表达式。\par
+    \textbf{解：}首先我们需要求出 $f$ 的一阶导数 $f'$，请注意链式法则的使用：
+    \begin{align*}
+      \dfrac{\mathrm{d}}{\mathrm{d}x} f(x) =
+      f'(x) &= \big(e^{2x}\big)' + \big(\sin(x^2)\big)' \\
+            &= e^{2x} \cdot (2x)' + \cos(x^2) \cdot \big(x^2\big)' \\
+            &= 2e^{2x} + 2x\cos(x^2)
+    \end{align*}
+    接着，我们再根据 $f'$ 求出二阶导数 $f''$，注意此时不仅需要用到链式法则，还需要用到乘法法则：
+    \begin{align*}
+      \dfrac{\mathrm{d^2}}{\mathrm{d}x^2} f(x) =
+      f''(x) &= \big(2e^{2x}\big)' + \big(2x \cos(x^2)\big)' \\
+             &= 2\big(e^{2x}\big)' + (2x)' \cdot \cos(x^2) + (2x) \cdot \big(\cos(x^2)\big)' \\
+             &= 4e^{2x} + 2\cos(x^2) + 2x \cdot \big(-\sin(x^2)\big) \cdot \big(x^2\big)' \\
+             &= \boxed{4e^{2x} + 2\cos(x^2) - 4x^2 \sin(x^2)}
+    \end{align*}
+  
+  \item 令多元函数 $f$ 定义为 $f(x_1, x_2) = 2e^{2x_1} + 3x_1 x_2 + \sin(x_2^2)$。求 $f$ 对于变量 $x_1$ 的偏导数。\par
+    \textbf{解：}此题与第一题难度相差不大，只是要记住在求对于 $x_1$ 的偏导数时，$x_2$ 这个变量即可看作一个常量。例如，在求 $3x_1 x_2$ 对于 $x_1$ 的偏导数时，我们将 $x_2$ 视作与 $3$ 性质一样的常量，从而得出偏导数为 $3x_2$；而像是 $\sin(x_2^2)$ 这样只含 $x_2$ 的项则如同常数项一样在求偏导后变为 0。因此，
+    \begin{align*}
+      \dfrac{\partial}{\partial x_1} f(x_1, x_2) &= 4e^{2x_1} + 3x_2 + 0 = \boxed{4e^{2x_1} + 3x_2}
+    \end{align*}
+  
+  \item 令多元函数 $f$ 定义为 $f(x_1, x_2) = 2e^{2x_1} + 3x_1 x_2 - \ln(x_2)$ \par
+    \textbf{解：}这道题本质和第二题是一样的，只是需要我们知道“梯度”这个概念其实就是若干个不同的偏导数放在一起。题中的函数是二元函数，所以我们需要求两个偏导数，分别是对于 $x_1$ 和 $x_2$ 的偏导数。过程如下：
+    \[
+      \dfrac{\partial f}{\partial x_1} = 4e^{2x_1} + 3x_2, \quad \dfrac{\partial f}{\partial x_2} = 3x_1 - \frac{1}{x_2}
+    \]
+    因此得到 $f$ 的梯度为
+    \[
+      \gradient f \equiv \grad f = \left( \dfrac{\partial f}{\partial x_1}, \dfrac{\partial f}{\partial x_2} \right) = \boxed{\left( 4e^{2x_1} + 3x_2,\ 3x_1 - \frac{1}{x_2} \right)}
+    \]
+
+\end{enumerate}
+
+
+\end{document}
