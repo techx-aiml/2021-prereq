@@ -88,6 +88,12 @@
   $$ \prob(A \mid B) = \frac{\prob(A \cap B)}{\prob(B)} $$
   
   如果对这个概念仍无法直观理解，可以去看一下 \href{https://ocw.mit.edu/resources/res-6-012-introduction-to-probability-spring-2018/part-i-the-fundamentals/MITRES_6_012S18_L02.pdf}{\underline{这个链接}} 里对于条件概率的可视化解释。
+  
+  注意，我们通过这个定义可以得出一个非常有用的等式：
+  $$ \prob(A \cap B) = \prob(B) \prob(A \mid B) = \prob(A) \prob(B \mid A) $$
+  
+  此外，利用条件概率的定义，我们不难给出一个关于事件独立性的等价的定义，即：事件 $A, B$ 为独立的当且仅当
+  $$ \prob(A) = \prob(A \mid B) \quad \textrm{或} \quad \prob(B) = \prob(B \mid A) $$
 
 \subsection{贝叶斯定理}
   
